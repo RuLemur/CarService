@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package CarService.internal.login;
+
+option go_package = "internal/login";
+
+service Login {
+    rpc Login(LoginRequest) returns (LoginResponse) {}
+}
+
+message LoginRequest {
+    string message = 1;
+}
+
+message LoginResponse {
+    string message = 1;
+}

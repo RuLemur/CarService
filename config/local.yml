@@ -1,0 +1,4 @@
+server:
+  grpc_host: localhost
+  port: ":5300"
+  db: "postgresql://mydb:mydb@localhost:5432/service?sslmode=disable&user=mydb&password=mydb"

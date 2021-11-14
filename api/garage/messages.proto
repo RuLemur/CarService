@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package CarService.internal.app.garage.endpoint;
+
+option go_package = "internal/app/garage/endpoint";
+
+service Garage {
+    rpc GetGarageInfo(GetGarageInfoRequest) returns (GetGarageInfoResponse) {}
+}
+
+message GetGarageInfoRequest {
+    int64 ID = 1;
+}
+
+message GetGarageInfoResponse {
+    string message = 1;
+}
