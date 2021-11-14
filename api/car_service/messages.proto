@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package CarService.internal.app.garage.endpoint;
+package CarService.internal.app.car_service.endpoint;
 
-option go_package = "internal/app/garage/endpoint";
+option go_package = "internal/app/car_service/endpoint";
 
-service Garage {
+service CarService {
     rpc GetGarageInfo(GetGarageInfoRequest) returns (GetGarageInfoResponse) {}
 }
 

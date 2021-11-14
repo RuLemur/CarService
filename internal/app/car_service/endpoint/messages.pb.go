@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.27.1
 // 	protoc        v3.17.3
-// source: api/garage/messages.proto
+// source: api/car_service/messages.proto
 
 package endpoint
 
@@ -35,7 +35,7 @@ type GetGarageInfoRequest struct {
 func (x *GetGarageInfoRequest) Reset() {
 	*x = GetGarageInfoRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_garage_messages_proto_msgTypes[0]
+		mi := &file_api_car_service_messages_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -48,7 +48,7 @@ func (x *GetGarageInfoRequest) String() string {
 func (*GetGarageInfoRequest) ProtoMessage() {}
 
 func (x *GetGarageInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_garage_messages_proto_msgTypes[0]
+	mi := &file_api_car_service_messages_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *GetGarageInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGarageInfoRequest.ProtoReflect.Descriptor instead.
 func (*GetGarageInfoRequest) Descriptor() ([]byte, []int) {
-	return file_api_garage_messages_proto_rawDescGZIP(), []int{0}
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetGarageInfoRequest) GetID() int64 {
@@ -82,7 +82,7 @@ type GetGarageInfoResponse struct {
 func (x *GetGarageInfoResponse) Reset() {
 	*x = GetGarageInfoResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_garage_messages_proto_msgTypes[1]
+		mi := &file_api_car_service_messages_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -95,7 +95,7 @@ func (x *GetGarageInfoResponse) String() string {
 func (*GetGarageInfoResponse) ProtoMessage() {}
 
 func (x *GetGarageInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_garage_messages_proto_msgTypes[1]
+	mi := &file_api_car_service_messages_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +108,7 @@ func (x *GetGarageInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGarageInfoResponse.ProtoReflect.Descriptor instead.
 func (*GetGarageInfoResponse) Descriptor() ([]byte, []int) {
-	return file_api_garage_messages_proto_rawDescGZIP(), []int{1}
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetGarageInfoResponse) GetMessage() string {
@@ -118,54 +118,56 @@ func (x *GetGarageInfoResponse) GetMessage() string {
 	return ""
 }
 
-var File_api_garage_messages_proto protoreflect.FileDescriptor
+var File_api_car_service_messages_proto protoreflect.FileDescriptor
 
-var file_api_garage_messages_proto_rawDesc = []byte{
-	0x0a, 0x19, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x2f, 0x6d, 0x65, 0x73,
-	0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x27, 0x43, 0x61, 0x72,
+var file_api_car_service_messages_proto_rawDesc = []byte{
+	0x0a, 0x1e, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x12, 0x2c, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74,
+	0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x22, 0x26,
+	0x0a, 0x14, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x02, 0x49, 0x44, 0x22, 0x31, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72,
+	0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0xa9, 0x01, 0x0a, 0x0a, 0x43, 0x61,
+	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x9a, 0x01, 0x0a, 0x0d, 0x47, 0x65, 0x74,
+	0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x42, 0x2e, 0x43, 0x61, 0x72,
 	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70,
-	0x6f, 0x69, 0x6e, 0x74, 0x22, 0x26, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67,
-	0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02,
-	0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x49, 0x44, 0x22, 0x31, 0x0a, 0x15,
-	0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32,
-	0x9b, 0x01, 0x0a, 0x06, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x12, 0x90, 0x01, 0x0a, 0x0d, 0x47,
-	0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x3d, 0x2e, 0x43,
-	0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
-	0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x2e, 0x65, 0x6e,
-	0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65,
-	0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3e, 0x2e, 0x43, 0x61,
-	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61,
-	0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x2e, 0x65, 0x6e, 0x64,
-	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49,
-	0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x1e, 0x5a,
-	0x1c, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x67, 0x61,
-	0x72, 0x61, 0x67, 0x65, 0x2f, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72,
+	0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x43,
+	0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65,
+	0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65,
+	0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x23, 0x5a, 0x21, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61,
+	0x6c, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2f, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
-	file_api_garage_messages_proto_rawDescOnce sync.Once
-	file_api_garage_messages_proto_rawDescData = file_api_garage_messages_proto_rawDesc
+	file_api_car_service_messages_proto_rawDescOnce sync.Once
+	file_api_car_service_messages_proto_rawDescData = file_api_car_service_messages_proto_rawDesc
 )
 
-func file_api_garage_messages_proto_rawDescGZIP() []byte {
-	file_api_garage_messages_proto_rawDescOnce.Do(func() {
-		file_api_garage_messages_proto_rawDescData = protoimpl.X.CompressGZIP(file_api_garage_messages_proto_rawDescData)
+func file_api_car_service_messages_proto_rawDescGZIP() []byte {
+	file_api_car_service_messages_proto_rawDescOnce.Do(func() {
+		file_api_car_service_messages_proto_rawDescData = protoimpl.X.CompressGZIP(file_api_car_service_messages_proto_rawDescData)
 	})
-	return file_api_garage_messages_proto_rawDescData
+	return file_api_car_service_messages_proto_rawDescData
 }
 
-var file_api_garage_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_api_garage_messages_proto_goTypes = []interface{}{
-	(*GetGarageInfoRequest)(nil),  // 0: CarService.internal.app.garage.endpoint.GetGarageInfoRequest
-	(*GetGarageInfoResponse)(nil), // 1: CarService.internal.app.garage.endpoint.GetGarageInfoResponse
+var file_api_car_service_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_api_car_service_messages_proto_goTypes = []interface{}{
+	(*GetGarageInfoRequest)(nil),  // 0: CarService.internal.app.car_service.endpoint.GetGarageInfoRequest
+	(*GetGarageInfoResponse)(nil), // 1: CarService.internal.app.car_service.endpoint.GetGarageInfoResponse
 }
-var file_api_garage_messages_proto_depIdxs = []int32{
-	0, // 0: CarService.internal.app.garage.endpoint.Garage.GetGarageInfo:input_type -> CarService.internal.app.garage.endpoint.GetGarageInfoRequest
-	1, // 1: CarService.internal.app.garage.endpoint.Garage.GetGarageInfo:output_type -> CarService.internal.app.garage.endpoint.GetGarageInfoResponse
+var file_api_car_service_messages_proto_depIdxs = []int32{
+	0, // 0: CarService.internal.app.car_service.endpoint.CarService.GetGarageInfo:input_type -> CarService.internal.app.car_service.endpoint.GetGarageInfoRequest
+	1, // 1: CarService.internal.app.car_service.endpoint.CarService.GetGarageInfo:output_type -> CarService.internal.app.car_service.endpoint.GetGarageInfoResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -173,13 +175,13 @@ var file_api_garage_messages_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_api_garage_messages_proto_init() }
-func file_api_garage_messages_proto_init() {
-	if File_api_garage_messages_proto != nil {
+func init() { file_api_car_service_messages_proto_init() }
+func file_api_car_service_messages_proto_init() {
+	if File_api_car_service_messages_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_api_garage_messages_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_api_car_service_messages_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetGarageInfoRequest); i {
 			case 0:
 				return &v.state
@@ -191,7 +193,7 @@ func file_api_garage_messages_proto_init() {
 				return nil
 			}
 		}
-		file_api_garage_messages_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_api_car_service_messages_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetGarageInfoResponse); i {
 			case 0:
 				return &v.state
@@ -208,20 +210,20 @@ func file_api_garage_messages_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_api_garage_messages_proto_rawDesc,
+			RawDescriptor: file_api_car_service_messages_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_garage_messages_proto_goTypes,
-		DependencyIndexes: file_api_garage_messages_proto_depIdxs,
-		MessageInfos:      file_api_garage_messages_proto_msgTypes,
+		GoTypes:           file_api_car_service_messages_proto_goTypes,
+		DependencyIndexes: file_api_car_service_messages_proto_depIdxs,
+		MessageInfos:      file_api_car_service_messages_proto_msgTypes,
 	}.Build()
-	File_api_garage_messages_proto = out.File
-	file_api_garage_messages_proto_rawDesc = nil
-	file_api_garage_messages_proto_goTypes = nil
-	file_api_garage_messages_proto_depIdxs = nil
+	File_api_car_service_messages_proto = out.File
+	file_api_car_service_messages_proto_rawDesc = nil
+	file_api_car_service_messages_proto_goTypes = nil
+	file_api_car_service_messages_proto_depIdxs = nil
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -232,74 +234,74 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// GarageClient is the client API for Garage service.
+// CarServiceClient is the client API for CarService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type GarageClient interface {
+type CarServiceClient interface {
 	GetGarageInfo(ctx context.Context, in *GetGarageInfoRequest, opts ...grpc.CallOption) (*GetGarageInfoResponse, error)
 }
 
-type garageClient struct {
+type carServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGarageClient(cc grpc.ClientConnInterface) GarageClient {
-	return &garageClient{cc}
+func NewCarServiceClient(cc grpc.ClientConnInterface) CarServiceClient {
+	return &carServiceClient{cc}
 }
 
-func (c *garageClient) GetGarageInfo(ctx context.Context, in *GetGarageInfoRequest, opts ...grpc.CallOption) (*GetGarageInfoResponse, error) {
+func (c *carServiceClient) GetGarageInfo(ctx context.Context, in *GetGarageInfoRequest, opts ...grpc.CallOption) (*GetGarageInfoResponse, error) {
 	out := new(GetGarageInfoResponse)
-	err := c.cc.Invoke(ctx, "/CarService.internal.app.garage.endpoint.Garage/GetGarageInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/CarService.internal.app.car_service.endpoint.CarService/GetGarageInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GarageServer is the server API for Garage service.
-type GarageServer interface {
+// CarServiceServer is the server API for CarService service.
+type CarServiceServer interface {
 	GetGarageInfo(context.Context, *GetGarageInfoRequest) (*GetGarageInfoResponse, error)
 }
 
-// UnimplementedGarageServer can be embedded to have forward compatible implementations.
-type UnimplementedGarageServer struct {
+// UnimplementedCarServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedCarServiceServer struct {
 }
 
-func (*UnimplementedGarageServer) GetGarageInfo(context.Context, *GetGarageInfoRequest) (*GetGarageInfoResponse, error) {
+func (*UnimplementedCarServiceServer) GetGarageInfo(context.Context, *GetGarageInfoRequest) (*GetGarageInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGarageInfo not implemented")
 }
 
-func RegisterGarageServer(s *grpc.Server, srv GarageServer) {
-	s.RegisterService(&_Garage_serviceDesc, srv)
+func RegisterCarServiceServer(s *grpc.Server, srv CarServiceServer) {
+	s.RegisterService(&_CarService_serviceDesc, srv)
 }
 
-func _Garage_GetGarageInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CarService_GetGarageInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetGarageInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GarageServer).GetGarageInfo(ctx, in)
+		return srv.(CarServiceServer).GetGarageInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/CarService.internal.app.garage.endpoint.Garage/GetGarageInfo",
+		FullMethod: "/CarService.internal.app.car_service.endpoint.CarService/GetGarageInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GarageServer).GetGarageInfo(ctx, req.(*GetGarageInfoRequest))
+		return srv.(CarServiceServer).GetGarageInfo(ctx, req.(*GetGarageInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Garage_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "CarService.internal.app.garage.endpoint.Garage",
-	HandlerType: (*GarageServer)(nil),
+var _CarService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "CarService.internal.app.car_service.endpoint.CarService",
+	HandlerType: (*CarServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetGarageInfo",
-			Handler:    _Garage_GetGarageInfo_Handler,
+			Handler:    _CarService_GetGarageInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/garage/messages.proto",
+	Metadata: "api/car_service/messages.proto",
 }
