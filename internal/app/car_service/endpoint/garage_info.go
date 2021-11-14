@@ -1,7 +1,7 @@
 package endpoint
 
 import (
-	garage "car-service/internal/app/garage/datastruct"
+	garage "car-service/internal/app/car_service/datastruct"
 	"context"
 	"fmt"
 )

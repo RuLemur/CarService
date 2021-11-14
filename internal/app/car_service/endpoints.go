@@ -1,7 +1,7 @@
-package garage
+package car_service
 
 import (
-	"car-service/internal/app/garage/endpoint"
+	"car-service/internal/app/car_service/endpoint"
 	"google.golang.org/grpc"
 )
 
@@ -15,5 +15,5 @@ func NewModule() Module {
 // RunGRPC registers gRPC methods
 func (m Module) RunGRPC(s *grpc.Server) {
 	var srv *endpoint.GRPCRouter
-	endpoint.RegisterGarageServer(s, srv)
+	endpoint.RegisterCarServiceServer(s, srv)
 }
