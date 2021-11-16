@@ -5,7 +5,8 @@ package CarService.internal.app.car_service.endpoint;
 option go_package = "internal/app/car_service/endpoint";
 
 service CarService {
-    rpc GetGarageInfo(GetGarageInfoRequest) returns (GetGarageInfoResponse) {}
+    rpc GetGarageInfo(GetGarageInfoRequest) returns (GetGarageInfoResponse);
+    rpc AddUser(AddUserRequest) returns (AddUserResponse);
 }
 
 message GetGarageInfoRequest {
@@ -14,4 +15,12 @@ message GetGarageInfoRequest {
 
 message GetGarageInfoResponse {
     string message = 1;
+}
+
+message AddUserRequest {
+    string username = 1;
+}
+
+message AddUserResponse {
+    int64 ID = 1;
 }

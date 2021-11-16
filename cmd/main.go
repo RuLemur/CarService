@@ -14,12 +14,14 @@ import (
 	"os"
 )
 
+type Server struct {
+	GrpcHost string `yaml:"grpc_host"`
+	Port     string `yaml:"port"`
+	DBHost   string `yaml:"db"`
+}
+
 type Config struct {
-	Server struct {
-		GrpcHost string `yaml:"grpc_host"`
-		Port     string `yaml:"port"`
-		DBHost   string `yaml:"db"`
-	}
+	Server Server `yaml:"server"`
 }
 
 func NewServerConfig(configPath string) (*Config, error) {
@@ -94,22 +96,12 @@ func (config Config) Run() {
 		log.Fatalln(err)
 	}
 
-	//db.QueryLogFunc = logDBQuery(logger)
-	//db.ExecLogFunc = logDBExec(logger)
 	defer func() {
 		if err := db.Close(); err != nil {
 			log.Fatalln(err)
 		}
 	}()
 
-	type Garage struct {
-		Id         int    `db:"id"`
-		GarageName string `db:"garage_name"`
-	}
-
-	//var g Garage
-	//err = db.Get(&g, "SELECT * FROM garage LIMIT 1")
-	//fmt.Println(g)
 
 	listener, err := net.Listen("tcp", config.Server.Port)
 
@@ -120,7 +112,10 @@ func (config Config) Run() {
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
 	service := car_service.NewModule()
-	service.RunGRPC(grpcServer)
+	service.RunGRPC(db, grpcServer)
 
-	grpcServer.Serve(listener)
+	err = grpcServer.Serve(listener)
+	if err != nil {
+		panic("failed to Serve server")
+	}
 }
