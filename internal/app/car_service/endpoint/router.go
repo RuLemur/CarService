@@ -1,14 +1,20 @@
 package endpoint
 
 import (
+	"car-service/internal/app/datastruct"
 	"context"
 )
 
 type GRPCRouter struct {
+	s *Service
 }
 
-func (G *GRPCRouter) GetGarageInfo(ctx context.Context, request *GetGarageInfoRequest) (*GetGarageInfoResponse, error) {
-	garageInfo, err := GetGarageInfo(ctx, request.ID)
+func NewGRPCRouter(s *Service) *GRPCRouter {
+	return &GRPCRouter{s}
+}
+
+func (g *GRPCRouter) GetGarageInfo(ctx context.Context, request *GetGarageInfoRequest) (*GetGarageInfoResponse, error) {
+	garageInfo, err := g.s.GetGarageInfo(ctx, request.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -16,3 +22,15 @@ func (G *GRPCRouter) GetGarageInfo(ctx context.Context, request *GetGarageInfoRe
 		Message: garageInfo.GarageName,
 	}, nil
 }
+
+
+func (g *GRPCRouter) AddUser(ctx context.Context, request *AddUserRequest) (*AddUserResponse, error) {
+	userID, err := g.s.AddUser(ctx, datastruct.User{Username: request.Username})
+	if err != nil {
+		return nil, err
+	}
+	return &AddUserResponse{
+		ID: userID,
+	}, nil
+}
+

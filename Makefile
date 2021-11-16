@@ -1,6 +1,6 @@
 CONFIG_FILE ?= ./config/local.yml
 DB_STRING ?= $(shell sed -n 's/db:[[:space:]]*"\(.*\)"/\1/p' $(CONFIG_FILE))
-APP_DSN = $(shell echo $(DB_STRING) | sed -n 's/^[ \t]*//')
+APP_DSN = $(shell echo $(DB_STRING) | xargs)
 MIGRATE := docker run --rm -v $(shell pwd)/migrations:/migrations --network host migrate/migrate:v4.15.1 -path=/migrations/ -database "$(APP_DSN)"
 
 run:
@@ -9,6 +9,7 @@ run:
 .PHONY: migrate
 migrate: ## run all new database migrations
 	@echo "Running all new database migrations..."
+	@echo $(APP_DSN)
 	@$(MIGRATE) up
 
 .PHONY: migrate-down
