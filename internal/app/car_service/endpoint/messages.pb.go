@@ -13,6 +13,7 @@ import (
 	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 )
@@ -23,100 +24,6 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
-
-type GetGarageInfoRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	ID int64 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
-}
-
-func (x *GetGarageInfoRequest) Reset() {
-	*x = GetGarageInfoRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_car_service_messages_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetGarageInfoRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetGarageInfoRequest) ProtoMessage() {}
-
-func (x *GetGarageInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_car_service_messages_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetGarageInfoRequest.ProtoReflect.Descriptor instead.
-func (*GetGarageInfoRequest) Descriptor() ([]byte, []int) {
-	return file_api_car_service_messages_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *GetGarageInfoRequest) GetID() int64 {
-	if x != nil {
-		return x.ID
-	}
-	return 0
-}
-
-type GetGarageInfoResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-}
-
-func (x *GetGarageInfoResponse) Reset() {
-	*x = GetGarageInfoResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_car_service_messages_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetGarageInfoResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetGarageInfoResponse) ProtoMessage() {}
-
-func (x *GetGarageInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_car_service_messages_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetGarageInfoResponse.ProtoReflect.Descriptor instead.
-func (*GetGarageInfoResponse) Descriptor() ([]byte, []int) {
-	return file_api_car_service_messages_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetGarageInfoResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
 
 type AddUserRequest struct {
 	state         protoimpl.MessageState
@@ -129,7 +36,7 @@ type AddUserRequest struct {
 func (x *AddUserRequest) Reset() {
 	*x = AddUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_car_service_messages_proto_msgTypes[2]
+		mi := &file_api_car_service_messages_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -142,7 +49,7 @@ func (x *AddUserRequest) String() string {
 func (*AddUserRequest) ProtoMessage() {}
 
 func (x *AddUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_car_service_messages_proto_msgTypes[2]
+	mi := &file_api_car_service_messages_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -155,7 +62,7 @@ func (x *AddUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddUserRequest.ProtoReflect.Descriptor instead.
 func (*AddUserRequest) Descriptor() ([]byte, []int) {
-	return file_api_car_service_messages_proto_rawDescGZIP(), []int{2}
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *AddUserRequest) GetUsername() string {
@@ -170,13 +77,13 @@ type AddUserResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ID int64 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *AddUserResponse) Reset() {
 	*x = AddUserResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_car_service_messages_proto_msgTypes[3]
+		mi := &file_api_car_service_messages_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -189,7 +96,7 @@ func (x *AddUserResponse) String() string {
 func (*AddUserResponse) ProtoMessage() {}
 
 func (x *AddUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_car_service_messages_proto_msgTypes[3]
+	mi := &file_api_car_service_messages_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,14 +109,649 @@ func (x *AddUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddUserResponse.ProtoReflect.Descriptor instead.
 func (*AddUserResponse) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *AddUserResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetUserRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *GetUserRequest) Reset() {
+	*x = GetUserRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserRequest) ProtoMessage() {}
+
+func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
+func (*GetUserRequest) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetUserRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetUserResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Username  string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	GarageId  int64                  `protobuf:"varint,3,opt,name=garage_id,json=garageId,proto3" json:"garage_id,omitempty"`
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+}
+
+func (x *GetUserResponse) Reset() {
+	*x = GetUserResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserResponse) ProtoMessage() {}
+
+func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
+func (*GetUserResponse) Descriptor() ([]byte, []int) {
 	return file_api_car_service_messages_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *AddUserResponse) GetID() int64 {
+func (x *GetUserResponse) GetId() int64 {
 	if x != nil {
-		return x.ID
+		return x.Id
 	}
 	return 0
+}
+
+func (x *GetUserResponse) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *GetUserResponse) GetGarageId() int64 {
+	if x != nil {
+		return x.GarageId
+	}
+	return 0
+}
+
+func (x *GetUserResponse) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+type CreateGarageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *CreateGarageRequest) Reset() {
+	*x = CreateGarageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateGarageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateGarageRequest) ProtoMessage() {}
+
+func (x *CreateGarageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateGarageRequest.ProtoReflect.Descriptor instead.
+func (*CreateGarageRequest) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CreateGarageRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type CreateGarageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *CreateGarageResponse) Reset() {
+	*x = CreateGarageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateGarageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateGarageResponse) ProtoMessage() {}
+
+func (x *CreateGarageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateGarageResponse.ProtoReflect.Descriptor instead.
+func (*CreateGarageResponse) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateGarageResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetGarageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *GetGarageRequest) Reset() {
+	*x = GetGarageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetGarageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGarageRequest) ProtoMessage() {}
+
+func (x *GetGarageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGarageRequest.ProtoReflect.Descriptor instead.
+func (*GetGarageRequest) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetGarageRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetGarageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	GarageId int64   `protobuf:"varint,1,opt,name=garage_id,json=garageId,proto3" json:"garage_id,omitempty"`
+	Cars     []int64 `protobuf:"varint,2,rep,packed,name=cars,proto3" json:"cars,omitempty"`
+}
+
+func (x *GetGarageResponse) Reset() {
+	*x = GetGarageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetGarageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGarageResponse) ProtoMessage() {}
+
+func (x *GetGarageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGarageResponse.ProtoReflect.Descriptor instead.
+func (*GetGarageResponse) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetGarageResponse) GetGarageId() int64 {
+	if x != nil {
+		return x.GarageId
+	}
+	return 0
+}
+
+func (x *GetGarageResponse) GetCars() []int64 {
+	if x != nil {
+		return x.Cars
+	}
+	return nil
+}
+
+type Car struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id         string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Brand      string `protobuf:"bytes,2,opt,name=brand,proto3" json:"brand,omitempty"`
+	Model      string `protobuf:"bytes,3,opt,name=model,proto3" json:"model,omitempty"`
+	Equipment  string `protobuf:"bytes,4,opt,name=equipment,proto3" json:"equipment,omitempty"`
+	EngineType string `protobuf:"bytes,5,opt,name=engine_type,json=engineType,proto3" json:"engine_type,omitempty"`
+}
+
+func (x *Car) Reset() {
+	*x = Car{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Car) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Car) ProtoMessage() {}
+
+func (x *Car) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Car.ProtoReflect.Descriptor instead.
+func (*Car) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Car) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Car) GetBrand() string {
+	if x != nil {
+		return x.Brand
+	}
+	return ""
+}
+
+func (x *Car) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *Car) GetEquipment() string {
+	if x != nil {
+		return x.Equipment
+	}
+	return ""
+}
+
+func (x *Car) GetEngineType() string {
+	if x != nil {
+		return x.EngineType
+	}
+	return ""
+}
+
+type CarSearchRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Brand string `protobuf:"bytes,1,opt,name=brand,proto3" json:"brand,omitempty"`
+	Model string `protobuf:"bytes,2,opt,name=model,proto3" json:"model,omitempty"`
+}
+
+func (x *CarSearchRequest) Reset() {
+	*x = CarSearchRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CarSearchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CarSearchRequest) ProtoMessage() {}
+
+func (x *CarSearchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CarSearchRequest.ProtoReflect.Descriptor instead.
+func (*CarSearchRequest) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *CarSearchRequest) GetBrand() string {
+	if x != nil {
+		return x.Brand
+	}
+	return ""
+}
+
+func (x *CarSearchRequest) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+type CarSearchResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Car []*Car `protobuf:"bytes,1,rep,name=car,proto3" json:"car,omitempty"`
+}
+
+func (x *CarSearchResponse) Reset() {
+	*x = CarSearchResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CarSearchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CarSearchResponse) ProtoMessage() {}
+
+func (x *CarSearchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CarSearchResponse.ProtoReflect.Descriptor instead.
+func (*CarSearchResponse) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CarSearchResponse) GetCar() []*Car {
+	if x != nil {
+		return x.Car
+	}
+	return nil
+}
+
+type AddToGarageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	GarageId int64 `protobuf:"varint,1,opt,name=garage_id,json=garageId,proto3" json:"garage_id,omitempty"`
+	ModelId  int64 `protobuf:"varint,2,opt,name=model_id,json=modelId,proto3" json:"model_id,omitempty"`
+}
+
+func (x *AddToGarageRequest) Reset() {
+	*x = AddToGarageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddToGarageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddToGarageRequest) ProtoMessage() {}
+
+func (x *AddToGarageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddToGarageRequest.ProtoReflect.Descriptor instead.
+func (*AddToGarageRequest) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *AddToGarageRequest) GetGarageId() int64 {
+	if x != nil {
+		return x.GarageId
+	}
+	return 0
+}
+
+func (x *AddToGarageRequest) GetModelId() int64 {
+	if x != nil {
+		return x.ModelId
+	}
+	return 0
+}
+
+type AddToGarageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarId int64 `protobuf:"varint,1,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *AddToGarageResponse) Reset() {
+	*x = AddToGarageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddToGarageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddToGarageResponse) ProtoMessage() {}
+
+func (x *AddToGarageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddToGarageResponse.ProtoReflect.Descriptor instead.
+func (*AddToGarageResponse) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *AddToGarageResponse) GetCarId() int64 {
+	if x != nil {
+		return x.CarId
+	}
+	return 0
+}
+
+type EmptyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *EmptyRequest) Reset() {
+	*x = EmptyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_car_service_messages_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EmptyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EmptyRequest) ProtoMessage() {}
+
+func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_car_service_messages_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
+func (*EmptyRequest) Descriptor() ([]byte, []int) {
+	return file_api_car_service_messages_proto_rawDescGZIP(), []int{13}
 }
 
 var File_api_car_service_messages_proto protoreflect.FileDescriptor
@@ -219,40 +761,121 @@ var file_api_car_service_messages_proto_rawDesc = []byte{
 	0x65, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x12, 0x2c, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74,
 	0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x22, 0x26,
-	0x0a, 0x14, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x02, 0x49, 0x44, 0x22, 0x31, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72,
-	0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x2c, 0x0a, 0x0e, 0x41, 0x64, 0x64,
-	0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75,
-	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75,
-	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x21, 0x0a, 0x0f, 0x41, 0x64, 0x64, 0x55, 0x73,
-	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x49, 0x44,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x49, 0x44, 0x32, 0xb0, 0x02, 0x0a, 0x0a, 0x43,
-	0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x98, 0x01, 0x0a, 0x0d, 0x47, 0x65,
-	0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x42, 0x2e, 0x43, 0x61,
-	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61,
-	0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x61,
-	0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x43, 0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74,
-	0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47,
-	0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x86, 0x01, 0x0a, 0x07, 0x41, 0x64, 0x64, 0x55, 0x73, 0x65, 0x72,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x1a, 0x1f,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f,
+	0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
+	0x2c, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x21, 0x0a,
+	0x0f, 0x41, 0x64, 0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64,
+	0x22, 0x20, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02,
+	0x69, 0x64, 0x22, 0x95, 0x01, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x5f, 0x69, 0x64, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x64, 0x12,
+	0x39, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52,
+	0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22, 0x25, 0x0a, 0x13, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69,
+	0x64, 0x22, 0x26, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x47, 0x61, 0x72, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x22, 0x0a, 0x10, 0x47, 0x65, 0x74,
+	0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x44, 0x0a,
+	0x11, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65, 0x49, 0x64, 0x12,
+	0x12, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x03, 0x52, 0x04, 0x63,
+	0x61, 0x72, 0x73, 0x22, 0x80, 0x01, 0x0a, 0x03, 0x43, 0x61, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x62,
+	0x72, 0x61, 0x6e, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x62, 0x72, 0x61, 0x6e,
+	0x64, 0x12, 0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x12, 0x1c, 0x0a, 0x09, 0x65, 0x71, 0x75, 0x69, 0x70,
+	0x6d, 0x65, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x65, 0x71, 0x75, 0x69,
+	0x70, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x65, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x5f,
+	0x74, 0x79, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e, 0x67, 0x69,
+	0x6e, 0x65, 0x54, 0x79, 0x70, 0x65, 0x22, 0x3e, 0x0a, 0x10, 0x43, 0x61, 0x72, 0x53, 0x65, 0x61,
+	0x72, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x62, 0x72,
+	0x61, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x62, 0x72, 0x61, 0x6e, 0x64,
+	0x12, 0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x22, 0x58, 0x0a, 0x11, 0x43, 0x61, 0x72, 0x53, 0x65, 0x61,
+	0x72, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x43, 0x0a, 0x03, 0x63,
+	0x61, 0x72, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x31, 0x2e, 0x43, 0x61, 0x72, 0x53, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65,
+	0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x43, 0x61, 0x72, 0x52, 0x03, 0x63, 0x61, 0x72,
+	0x22, 0x4c, 0x0a, 0x12, 0x41, 0x64, 0x64, 0x54, 0x6f, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x67, 0x61, 0x72, 0x61, 0x67, 0x65,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x67, 0x61, 0x72, 0x61, 0x67,
+	0x65, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x69, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x49, 0x64, 0x22, 0x2c,
+	0x0a, 0x13, 0x41, 0x64, 0x64, 0x54, 0x6f, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x15, 0x0a, 0x06, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x61, 0x72, 0x49, 0x64, 0x22, 0x0e, 0x0a, 0x0c,
+	0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x32, 0xe2, 0x06, 0x0a,
+	0x0a, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x86, 0x01, 0x0a, 0x07,
+	0x41, 0x64, 0x64, 0x55, 0x73, 0x65, 0x72, 0x12, 0x3c, 0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e,
+	0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x41, 0x64, 0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3d, 0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e,
+	0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70,
+	0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x41, 0x64, 0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x86, 0x01, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72,
 	0x12, 0x3c, 0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e,
 	0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73,
 	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e,
-	0x41, 0x64, 0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3d,
+	0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3d,
+	0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65,
+	0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65,
+	0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8e, 0x01,
+	0x0a, 0x0c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x12, 0x3a,
+	0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65,
+	0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x45, 0x6d,
+	0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x42, 0x2e, 0x43, 0x61, 0x72,
+	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8c,
+	0x01, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x12, 0x3e, 0x2e, 0x43,
+	0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x47,
+	0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3f, 0x2e, 0x43,
+	0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x47,
+	0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8c, 0x01,
+	0x0a, 0x09, 0x43, 0x61, 0x72, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x12, 0x3e, 0x2e, 0x43, 0x61,
+	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61,
+	0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x43, 0x61, 0x72, 0x53, 0x65,
+	0x61, 0x72, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3f, 0x2e, 0x43, 0x61,
+	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61,
+	0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x43, 0x61, 0x72, 0x53, 0x65,
+	0x61, 0x72, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x92, 0x01, 0x0a,
+	0x0b, 0x41, 0x64, 0x64, 0x54, 0x6f, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x12, 0x40, 0x2e, 0x43,
+	0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x41, 0x64, 0x64, 0x54,
+	0x6f, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x41,
 	0x2e, 0x43, 0x61, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x69, 0x6e, 0x74, 0x65,
 	0x72, 0x6e, 0x61, 0x6c, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2e, 0x41, 0x64,
-	0x64, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x23, 0x5a,
-	0x21, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x63, 0x61,
-	0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69,
-	0x6e, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x64, 0x54, 0x6f, 0x47, 0x61, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x42, 0x23, 0x5a, 0x21, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x61, 0x70,
+	0x70, 0x2f, 0x63, 0x61, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x65, 0x6e,
+	0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -267,23 +890,44 @@ func file_api_car_service_messages_proto_rawDescGZIP() []byte {
 	return file_api_car_service_messages_proto_rawDescData
 }
 
-var file_api_car_service_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_car_service_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_api_car_service_messages_proto_goTypes = []interface{}{
-	(*GetGarageInfoRequest)(nil),  // 0: CarService.internal.app.car_service.endpoint.GetGarageInfoRequest
-	(*GetGarageInfoResponse)(nil), // 1: CarService.internal.app.car_service.endpoint.GetGarageInfoResponse
-	(*AddUserRequest)(nil),        // 2: CarService.internal.app.car_service.endpoint.AddUserRequest
-	(*AddUserResponse)(nil),       // 3: CarService.internal.app.car_service.endpoint.AddUserResponse
+	(*AddUserRequest)(nil),        // 0: CarService.internal.app.car_service.endpoint.AddUserRequest
+	(*AddUserResponse)(nil),       // 1: CarService.internal.app.car_service.endpoint.AddUserResponse
+	(*GetUserRequest)(nil),        // 2: CarService.internal.app.car_service.endpoint.GetUserRequest
+	(*GetUserResponse)(nil),       // 3: CarService.internal.app.car_service.endpoint.GetUserResponse
+	(*CreateGarageRequest)(nil),   // 4: CarService.internal.app.car_service.endpoint.CreateGarageRequest
+	(*CreateGarageResponse)(nil),  // 5: CarService.internal.app.car_service.endpoint.CreateGarageResponse
+	(*GetGarageRequest)(nil),      // 6: CarService.internal.app.car_service.endpoint.GetGarageRequest
+	(*GetGarageResponse)(nil),     // 7: CarService.internal.app.car_service.endpoint.GetGarageResponse
+	(*Car)(nil),                   // 8: CarService.internal.app.car_service.endpoint.Car
+	(*CarSearchRequest)(nil),      // 9: CarService.internal.app.car_service.endpoint.CarSearchRequest
+	(*CarSearchResponse)(nil),     // 10: CarService.internal.app.car_service.endpoint.CarSearchResponse
+	(*AddToGarageRequest)(nil),    // 11: CarService.internal.app.car_service.endpoint.AddToGarageRequest
+	(*AddToGarageResponse)(nil),   // 12: CarService.internal.app.car_service.endpoint.AddToGarageResponse
+	(*EmptyRequest)(nil),          // 13: CarService.internal.app.car_service.endpoint.EmptyRequest
+	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
 }
 var file_api_car_service_messages_proto_depIdxs = []int32{
-	0, // 0: CarService.internal.app.car_service.endpoint.CarService.GetGarageInfo:input_type -> CarService.internal.app.car_service.endpoint.GetGarageInfoRequest
-	2, // 1: CarService.internal.app.car_service.endpoint.CarService.AddUser:input_type -> CarService.internal.app.car_service.endpoint.AddUserRequest
-	1, // 2: CarService.internal.app.car_service.endpoint.CarService.GetGarageInfo:output_type -> CarService.internal.app.car_service.endpoint.GetGarageInfoResponse
-	3, // 3: CarService.internal.app.car_service.endpoint.CarService.AddUser:output_type -> CarService.internal.app.car_service.endpoint.AddUserResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	14, // 0: CarService.internal.app.car_service.endpoint.GetUserResponse.updated_at:type_name -> google.protobuf.Timestamp
+	8,  // 1: CarService.internal.app.car_service.endpoint.CarSearchResponse.car:type_name -> CarService.internal.app.car_service.endpoint.Car
+	0,  // 2: CarService.internal.app.car_service.endpoint.CarService.AddUser:input_type -> CarService.internal.app.car_service.endpoint.AddUserRequest
+	2,  // 3: CarService.internal.app.car_service.endpoint.CarService.GetUser:input_type -> CarService.internal.app.car_service.endpoint.GetUserRequest
+	13, // 4: CarService.internal.app.car_service.endpoint.CarService.CreateGarage:input_type -> CarService.internal.app.car_service.endpoint.EmptyRequest
+	6,  // 5: CarService.internal.app.car_service.endpoint.CarService.GetGarage:input_type -> CarService.internal.app.car_service.endpoint.GetGarageRequest
+	9,  // 6: CarService.internal.app.car_service.endpoint.CarService.CarSearch:input_type -> CarService.internal.app.car_service.endpoint.CarSearchRequest
+	11, // 7: CarService.internal.app.car_service.endpoint.CarService.AddToGarage:input_type -> CarService.internal.app.car_service.endpoint.AddToGarageRequest
+	1,  // 8: CarService.internal.app.car_service.endpoint.CarService.AddUser:output_type -> CarService.internal.app.car_service.endpoint.AddUserResponse
+	3,  // 9: CarService.internal.app.car_service.endpoint.CarService.GetUser:output_type -> CarService.internal.app.car_service.endpoint.GetUserResponse
+	5,  // 10: CarService.internal.app.car_service.endpoint.CarService.CreateGarage:output_type -> CarService.internal.app.car_service.endpoint.CreateGarageResponse
+	7,  // 11: CarService.internal.app.car_service.endpoint.CarService.GetGarage:output_type -> CarService.internal.app.car_service.endpoint.GetGarageResponse
+	10, // 12: CarService.internal.app.car_service.endpoint.CarService.CarSearch:output_type -> CarService.internal.app.car_service.endpoint.CarSearchResponse
+	12, // 13: CarService.internal.app.car_service.endpoint.CarService.AddToGarage:output_type -> CarService.internal.app.car_service.endpoint.AddToGarageResponse
+	8,  // [8:14] is the sub-list for method output_type
+	2,  // [2:8] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_api_car_service_messages_proto_init() }
@@ -293,30 +937,6 @@ func file_api_car_service_messages_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_api_car_service_messages_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetGarageInfoRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_car_service_messages_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetGarageInfoResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_car_service_messages_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AddUserRequest); i {
 			case 0:
 				return &v.state
@@ -328,8 +948,152 @@ func file_api_car_service_messages_proto_init() {
 				return nil
 			}
 		}
-		file_api_car_service_messages_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_api_car_service_messages_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AddUserResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetUserRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetUserResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateGarageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateGarageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetGarageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetGarageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Car); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CarSearchRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CarSearchResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddToGarageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddToGarageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_car_service_messages_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EmptyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -347,7 +1111,7 @@ func file_api_car_service_messages_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_api_car_service_messages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -373,8 +1137,12 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CarServiceClient interface {
-	GetGarageInfo(ctx context.Context, in *GetGarageInfoRequest, opts ...grpc.CallOption) (*GetGarageInfoResponse, error)
 	AddUser(ctx context.Context, in *AddUserRequest, opts ...grpc.CallOption) (*AddUserResponse, error)
+	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
+	CreateGarage(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CreateGarageResponse, error)
+	GetGarage(ctx context.Context, in *GetGarageRequest, opts ...grpc.CallOption) (*GetGarageResponse, error)
+	CarSearch(ctx context.Context, in *CarSearchRequest, opts ...grpc.CallOption) (*CarSearchResponse, error)
+	AddToGarage(ctx context.Context, in *AddToGarageRequest, opts ...grpc.CallOption) (*AddToGarageResponse, error)
 }
 
 type carServiceClient struct {
@@ -383,15 +1151,6 @@ type carServiceClient struct {
 
 func NewCarServiceClient(cc grpc.ClientConnInterface) CarServiceClient {
 	return &carServiceClient{cc}
-}
-
-func (c *carServiceClient) GetGarageInfo(ctx context.Context, in *GetGarageInfoRequest, opts ...grpc.CallOption) (*GetGarageInfoResponse, error) {
-	out := new(GetGarageInfoResponse)
-	err := c.cc.Invoke(ctx, "/CarService.internal.app.car_service.endpoint.CarService/GetGarageInfo", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *carServiceClient) AddUser(ctx context.Context, in *AddUserRequest, opts ...grpc.CallOption) (*AddUserResponse, error) {
@@ -403,43 +1162,86 @@ func (c *carServiceClient) AddUser(ctx context.Context, in *AddUserRequest, opts
 	return out, nil
 }
 
+func (c *carServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
+	out := new(GetUserResponse)
+	err := c.cc.Invoke(ctx, "/CarService.internal.app.car_service.endpoint.CarService/GetUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carServiceClient) CreateGarage(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CreateGarageResponse, error) {
+	out := new(CreateGarageResponse)
+	err := c.cc.Invoke(ctx, "/CarService.internal.app.car_service.endpoint.CarService/CreateGarage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carServiceClient) GetGarage(ctx context.Context, in *GetGarageRequest, opts ...grpc.CallOption) (*GetGarageResponse, error) {
+	out := new(GetGarageResponse)
+	err := c.cc.Invoke(ctx, "/CarService.internal.app.car_service.endpoint.CarService/GetGarage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carServiceClient) CarSearch(ctx context.Context, in *CarSearchRequest, opts ...grpc.CallOption) (*CarSearchResponse, error) {
+	out := new(CarSearchResponse)
+	err := c.cc.Invoke(ctx, "/CarService.internal.app.car_service.endpoint.CarService/CarSearch", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carServiceClient) AddToGarage(ctx context.Context, in *AddToGarageRequest, opts ...grpc.CallOption) (*AddToGarageResponse, error) {
+	out := new(AddToGarageResponse)
+	err := c.cc.Invoke(ctx, "/CarService.internal.app.car_service.endpoint.CarService/AddToGarage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CarServiceServer is the server API for CarService service.
 type CarServiceServer interface {
-	GetGarageInfo(context.Context, *GetGarageInfoRequest) (*GetGarageInfoResponse, error)
 	AddUser(context.Context, *AddUserRequest) (*AddUserResponse, error)
+	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
+	CreateGarage(context.Context, *EmptyRequest) (*CreateGarageResponse, error)
+	GetGarage(context.Context, *GetGarageRequest) (*GetGarageResponse, error)
+	CarSearch(context.Context, *CarSearchRequest) (*CarSearchResponse, error)
+	AddToGarage(context.Context, *AddToGarageRequest) (*AddToGarageResponse, error)
 }
 
 // UnimplementedCarServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedCarServiceServer struct {
 }
 
-func (*UnimplementedCarServiceServer) GetGarageInfo(context.Context, *GetGarageInfoRequest) (*GetGarageInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGarageInfo not implemented")
-}
 func (*UnimplementedCarServiceServer) AddUser(context.Context, *AddUserRequest) (*AddUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUser not implemented")
+}
+func (*UnimplementedCarServiceServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
+}
+func (*UnimplementedCarServiceServer) CreateGarage(context.Context, *EmptyRequest) (*CreateGarageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateGarage not implemented")
+}
+func (*UnimplementedCarServiceServer) GetGarage(context.Context, *GetGarageRequest) (*GetGarageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGarage not implemented")
+}
+func (*UnimplementedCarServiceServer) CarSearch(context.Context, *CarSearchRequest) (*CarSearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CarSearch not implemented")
+}
+func (*UnimplementedCarServiceServer) AddToGarage(context.Context, *AddToGarageRequest) (*AddToGarageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddToGarage not implemented")
 }
 
 func RegisterCarServiceServer(s *grpc.Server, srv CarServiceServer) {
 	s.RegisterService(&_CarService_serviceDesc, srv)
-}
-
-func _CarService_GetGarageInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGarageInfoRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CarServiceServer).GetGarageInfo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/CarService.internal.app.car_service.endpoint.CarService/GetGarageInfo",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarServiceServer).GetGarageInfo(ctx, req.(*GetGarageInfoRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _CarService_AddUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -460,17 +1262,123 @@ func _CarService_AddUser_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CarService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarServiceServer).GetUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/CarService.internal.app.car_service.endpoint.CarService/GetUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarServiceServer).GetUser(ctx, req.(*GetUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarService_CreateGarage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarServiceServer).CreateGarage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/CarService.internal.app.car_service.endpoint.CarService/CreateGarage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarServiceServer).CreateGarage(ctx, req.(*EmptyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarService_GetGarage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGarageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarServiceServer).GetGarage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/CarService.internal.app.car_service.endpoint.CarService/GetGarage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarServiceServer).GetGarage(ctx, req.(*GetGarageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarService_CarSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CarSearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarServiceServer).CarSearch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/CarService.internal.app.car_service.endpoint.CarService/CarSearch",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarServiceServer).CarSearch(ctx, req.(*CarSearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarService_AddToGarage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddToGarageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarServiceServer).AddToGarage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/CarService.internal.app.car_service.endpoint.CarService/AddToGarage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarServiceServer).AddToGarage(ctx, req.(*AddToGarageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _CarService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "CarService.internal.app.car_service.endpoint.CarService",
 	HandlerType: (*CarServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetGarageInfo",
-			Handler:    _CarService_GetGarageInfo_Handler,
-		},
-		{
 			MethodName: "AddUser",
 			Handler:    _CarService_AddUser_Handler,
+		},
+		{
+			MethodName: "GetUser",
+			Handler:    _CarService_GetUser_Handler,
+		},
+		{
+			MethodName: "CreateGarage",
+			Handler:    _CarService_CreateGarage_Handler,
+		},
+		{
+			MethodName: "GetGarage",
+			Handler:    _CarService_GetGarage_Handler,
+		},
+		{
+			MethodName: "CarSearch",
+			Handler:    _CarService_CarSearch_Handler,
+		},
+		{
+			MethodName: "AddToGarage",
+			Handler:    _CarService_AddToGarage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
