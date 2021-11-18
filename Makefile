@@ -6,6 +6,10 @@ MIGRATE := docker run --rm -v $(shell pwd)/migrations:/migrations --network host
 run:
 	go run ./cmd/main.go -config ./config/local.yml
 
+proto-gen:
+	@echo "Running generation proto"
+	protoc --go_out=plugins=grpc:. ./api/car_service/messages.proto
+
 .PHONY: migrate
 migrate: ## run all new database migrations
 	@echo "Running all new database migrations..."
