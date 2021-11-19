@@ -5,15 +5,14 @@ import (
 	"car-service/internal/queue"
 	"car-service/internal/repo"
 	"context"
-	"github.com/jmoiron/sqlx"
 )
 
 type Service struct {
-	db          *sqlx.DB
+	db          *repo.QueryLogger
 	queueClient *queue.Client
 }
 
-func NewService(db *sqlx.DB, queueClient *queue.Client) *Service {
+func NewService(db *repo.QueryLogger, queueClient *queue.Client) *Service {
 	return &Service{db, queueClient}
 }
 
