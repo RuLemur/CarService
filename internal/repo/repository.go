@@ -26,13 +26,11 @@ func CreateGarage(db *sqlx.DB, garage *datastruct.Garage) error {
 	return err
 }
 
-func GetGarage(db *sqlx.DB, garageId int64) (*datastruct.Garage, error) {
-	var carIds []int64
-	err := db.Select(&carIds, `SELECT car_id FROM garage where id = $1`, garageId)
-	return &datastruct.Garage{
-		GarageID: garageId,
-		CarIDs:   carIds,
-	}, err
+func GetGarage(db *sqlx.DB, garageId int64) ([]*datastruct.Garage, error) {
+	var garages []*datastruct.Garage
+	err := db.Select(&garages, `SELECT * FROM garage where id = $1`, garageId)
+
+	return garages, err
 }
 
 func SearchCarModel(db *sqlx.DB, filter map[string]string, limit int64) ([]*datastruct.CarModel, error) {
