@@ -1,10 +1,13 @@
 package datastruct
 
-import "time"
+import (
+	"database/sql"
+	"time"
+)
 
 type Garage struct {
-	GarageID int64
-	CarIDs   []int64
+	GarageID int64         `db:"id"`
+	CarID    sql.NullInt64 `db:"car_id"`
 }
 
 type User struct {

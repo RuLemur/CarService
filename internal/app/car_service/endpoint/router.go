@@ -4,6 +4,7 @@ import (
 	"car-service/internal/app/car_service"
 	"car-service/internal/app/datastruct"
 	"context"
+	"fmt"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -49,14 +50,21 @@ func (g *GRPCRouter) CreateGarage(ctx context.Context, request *EmptyRequest) (*
 }
 
 func (g *GRPCRouter) GetGarage(ctx context.Context, request *GetGarageRequest) (*GetGarageResponse, error) {
-	garage, err := g.s.GetGarage(ctx, request.Id)
+	garages, err := g.s.GetGarage(ctx, request.Id)
 	if err != nil {
 		return nil, err
 	}
+	if len(garages) == 0 {
+		return nil, fmt.Errorf("not found garage")
+	}
 
+	var cars []int64
+	for _, garage := range garages {
+		cars = append(cars, garage.CarID.Int64)
+	}
 	return &GetGarageResponse{
-		GarageId: garage.GarageID,
-		Cars:     garage.CarIDs,
+		GarageId: garages[0].GarageID,
+		Cars:     cars,
 	}, nil
 }
 

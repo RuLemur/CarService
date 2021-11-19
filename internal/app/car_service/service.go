@@ -37,11 +37,12 @@ func (s *Service) CreateGarage(ctx context.Context) (datastruct.Garage, error) {
 	return garage, err
 }
 
-func (s *Service) GetGarage(ctx context.Context, garageID int64) (*datastruct.Garage, error) {
+func (s *Service) GetGarage(ctx context.Context, garageID int64) ([]*datastruct.Garage, error) {
 	garage, err := repo.GetGarage(s.db, garageID)
 	if err != nil {
 		return nil, err
 	}
+
 	return garage, nil
 }
 
