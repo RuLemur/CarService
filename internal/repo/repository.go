@@ -10,30 +10,30 @@ import (
 type Repository interface {
 }
 
-func AddUser(db *sqlx.DB, user *datastruct.User) error {
+func AddUser(db *QueryLogger, user *datastruct.User) error {
 	err := db.QueryRowx(`INSERT INTO users (username) VALUES ($1) RETURNING id`, user.Username).Scan(&user.ID)
 	return err
 }
 
-func GetUser(db *sqlx.DB, userId int64) (*datastruct.User, error) {
+func GetUser(db *QueryLogger, userId int64) (*datastruct.User, error) {
 	var user datastruct.User
-	err := db.Get(&user, `SELECT * FROM users where id = $1`, userId)
+	err := sqlx.Get(db, &user, `SELECT * FROM users where id = $1`, userId)
 	return &user, err
 }
 
-func CreateGarage(db *sqlx.DB, garage *datastruct.Garage) error {
+func CreateGarage(db *QueryLogger, garage *datastruct.Garage) error {
 	err := db.QueryRowx(`INSERT INTO garage DEFAULT VALUES RETURNING id`).Scan(&garage.GarageID)
 	return err
 }
 
-func GetGarage(db *sqlx.DB, garageId int64) ([]*datastruct.Garage, error) {
+func GetGarage(db *QueryLogger, garageId int64) ([]*datastruct.Garage, error) {
 	var garages []*datastruct.Garage
-	err := db.Select(&garages, `SELECT * FROM garage where id = $1`, garageId)
+	err := sqlx.Select(db, &garages, `SELECT * FROM garage where id = $1`, garageId)
 
 	return garages, err
 }
 
-func SearchCarModel(db *sqlx.DB, filter map[string]string, limit int64) ([]*datastruct.CarModel, error) {
+func SearchCarModel(db *QueryLogger, filter map[string]string, limit int64) ([]*datastruct.CarModel, error) {
 	var models []*datastruct.CarModel
 
 	var filterString string
@@ -62,10 +62,16 @@ func SearchCarModel(db *sqlx.DB, filter map[string]string, limit int64) ([]*data
 		}
 
 		return models, nil
+	} else {
+		err := sqlx.Select(db, &models, `SELECT * FROM car_models limit 10`)
+		if err != nil {
+			return nil, err
+		}
+		return models, nil
 	}
 	return []*datastruct.CarModel{}, nil
 }
 
-func AddToGarage(db *sqlx.DB, userCar *datastruct.UserCar) {
-	db.MustExec(`INSERT INTO garage (id, car_id) VALUES ($1,$2) RETURNING id`, userCar.GarageId, userCar.CarId)
+func AddToGarage(db *QueryLogger, userCar *datastruct.UserCar) {
+	db.QueryRowx(`INSERT INTO garage (id, car_id) VALUES ($1,$2) RETURNING id`, userCar.GarageId, userCar.CarId)
 }

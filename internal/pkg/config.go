@@ -14,14 +14,17 @@ type GrpcServer struct {
 type Database struct {
 	DBHost string `yaml:"db"`
 }
-
+type Middleware struct {
+	Host string `yaml:"host"`
+}
 type Queue struct {
 	Host string `yaml:"host"`
 }
 type Config struct {
-	Server   GrpcServer `yaml:"server"`
-	Database Database   `yaml:"database"`
-	Queue    Queue      `yaml:"queue"`
+	Server     GrpcServer `yaml:"server"`
+	Database   Database   `yaml:"database"`
+	Queue      Queue      `yaml:"queue"`
+	Middleware Middleware `yaml:"middleware"`
 }
 
 func NewServerConfig(configPath string) (*Config, error) {

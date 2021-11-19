@@ -4,3 +4,5 @@ database:
   db: "postgresql://root:mydb@localhost:5432/car_service?sslmode=disable"
 queue:
   host: "amqp://admin:1234@localhost:5672/"
+middleware:
+  host: ":8080"

@@ -5,7 +5,6 @@ import (
 	"car-service/internal/app/datastruct"
 	"context"
 	"fmt"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type GRPCRouter struct {
@@ -34,8 +33,8 @@ func (g *GRPCRouter) GetUser(ctx context.Context, request *GetUserRequest) (*Get
 	return &GetUserResponse{
 		Id:        user.ID,
 		Username:  user.Username,
-		GarageId:  user.GarageID,
-		UpdatedAt: timestamppb.New(user.RegistrationAt),
+		GarageId:  user.GarageID.Int64,
+		UpdatedAt: user.RegistrationAt,
 	}, nil
 }
 

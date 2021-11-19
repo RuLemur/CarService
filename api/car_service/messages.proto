@@ -3,6 +3,7 @@ syntax = "proto3";
 package CarService.internal.app.car_service.endpoint;
 
 import "google/protobuf/timestamp.proto";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 option go_package = "internal/app/car_service/endpoint";
 
@@ -17,7 +18,7 @@ service CarService {
 }
 
 message AddUserRequest {
-  string username = 1;
+  string username = 1 ;
 }
 
 message AddUserResponse {
@@ -25,14 +26,14 @@ message AddUserResponse {
 }
 
 message GetUserRequest {
-  int64 id = 1;
+  int64 id = 1 ;
 }
 
 message GetUserResponse {
   int64 id = 1;
   string username = 2;
   int64 garage_id = 3;
-  google.protobuf.Timestamp updated_at = 4;
+  google.protobuf.Timestamp updated_at = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message CreateGarageRequest {

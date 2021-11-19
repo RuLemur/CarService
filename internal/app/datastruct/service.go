@@ -11,10 +11,10 @@ type Garage struct {
 }
 
 type User struct {
-	ID             int64     `db:"id"`
-	Username       string    `db:"username"`
-	GarageID       int64     `db:"garage_id"`
-	RegistrationAt time.Time `db:"registration_at"`
+	ID             int64         `db:"id"`
+	Username       string        `db:"username"`
+	GarageID       sql.NullInt64 `db:"garage_id"`
+	RegistrationAt time.Time     `db:"registration_at"`
 }
 
 type UserCar struct {

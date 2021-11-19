@@ -8,8 +8,10 @@ run:
 
 proto-gen:
 	@echo "Running generation proto"
-	protoc --go_out=plugins=grpc:. ./api/car_service/messages.proto
+	protoc -I=. -I=$(GOPATH)/src --gofast_out=plugins=grpc:. ./api/car_service/messages.proto
 
+start:
+	docker-compose up -d
 .PHONY: migrate
 migrate: ## run all new database migrations
 	@echo "Running all new database migrations..."
