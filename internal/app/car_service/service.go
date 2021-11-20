@@ -2,9 +2,9 @@ package car_service
 
 import (
 	"context"
-	"github.com/rulemur/car_service/internal/app/datastruct"
-	"github.com/rulemur/car_service/internal/queue"
-	"github.com/rulemur/car_service/internal/repo"
+	"github.com/rulemur/CarService/internal/app/datastruct"
+	"github.com/rulemur/CarService/internal/queue"
+	"github.com/rulemur/CarService/internal/repo"
 )
 
 type Service struct {
