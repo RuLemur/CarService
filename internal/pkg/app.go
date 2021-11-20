@@ -1,11 +1,11 @@
 package pkg
 
 import (
-	"CarService/internal/app/car_service"
-	"CarService/internal/app/car_service/router"
-	"CarService/internal/queue"
-	"CarService/internal/repo"
 	"context"
+	"github.com/RuLemur/CarService/internal/app/car_service"
+	"github.com/RuLemur/CarService/internal/app/car_service/router"
+	"github.com/RuLemur/CarService/internal/queue"
+	"github.com/RuLemur/CarService/internal/repo"
 	"github.com/RuLemur/CarService/pkg/endpoint"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
