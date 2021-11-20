@@ -8,7 +8,11 @@ run:
 
 proto-gen:
 	@echo "Running generation proto"
-	protoc -I=. -I=$(GOPATH)/src --gofast_out=plugins=grpc:. ./api/car_service/messages.proto
+	cp ./internal/app/car_service/endpoint/messages.proto ./pkg/endpoint/messages.proto
+	sed -i '' 's/package .*.endpoint;/package endpoint;/' ./pkg/endpoint/messages.proto
+	sed -i '' 's|option go_package = ".*endpoint";|option go_package = "pkg/endpoint";|' ./pkg/endpoint/messages.proto
+	protoc -I=. -I=$(GOPATH)/src --gofast_out=plugins=grpc:. ./internal/app/car_service/endpoint/messages.proto
+	protoc -I=. -I=$(GOPATH)/src --gofast_out=plugins=grpc:. ./pkg/endpoint/messages.proto
 
 start:
 	docker-compose up -d
