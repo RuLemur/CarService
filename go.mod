@@ -1,4 +1,4 @@
-module car_service
+module CarService
 
 go 1.17
 

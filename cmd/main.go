@@ -1,7 +1,7 @@
 package main
 
 import (
-	"car_service/internal/pkg"
+	"CarService/internal/pkg"
 	_ "github.com/jackc/pgx/stdlib"
 )
 

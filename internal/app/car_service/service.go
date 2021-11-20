@@ -1,9 +1,9 @@
 package car_service
 
 import (
-	"car_service/internal/app/datastruct"
-	"car_service/internal/queue"
-	"car_service/internal/repo"
+	"CarService/internal/app/datastruct"
+	"CarService/internal/queue"
+	"CarService/internal/repo"
 	"context"
 )
 
