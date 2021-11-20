@@ -2,9 +2,10 @@ package pkg
 
 import (
 	"car_service/internal/app/car_service"
-	"car_service/internal/app/car_service/endpoint"
+	"car_service/internal/app/car_service/router"
 	"car_service/internal/queue"
 	"car_service/internal/repo"
+	"car_service/pkg/endpoint"
 	"context"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
@@ -57,7 +58,7 @@ func (app *App) RunApp(config *Config) {
 	)
 
 	service := car_service.NewService(db, rabbit)
-	srv := endpoint.NewGRPCRouter(service)
+	srv := router.NewGRPCRouter(service)
 	endpoint.RegisterCarServiceServer(grpcServer, srv)
 
 	app.log.Println("Started. Listen requests")
