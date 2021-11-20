@@ -2,7 +2,7 @@ package main
 
 import (
 	_ "github.com/jackc/pgx/stdlib"
-	"github.com/rulemur/car_service/internal/pkg"
+	"github.com/rulemur/CarService/internal/pkg"
 )
 
 func main() {

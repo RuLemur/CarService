@@ -1,4 +1,4 @@
-module github.com/rulemur/car_service
+module github.com/rulemur/CarService
 
 go 1.17
 
