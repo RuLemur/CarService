@@ -1,8 +1,8 @@
 package repo
 
 import (
-	"CarService/internal/app/datastruct"
 	"fmt"
+	"github.com/RuLemur/CarService/internal/app/datastruct"
 	"github.com/jmoiron/sqlx"
 	"log"
 )

@@ -1,10 +1,10 @@
 package car_service
 
 import (
-	"CarService/internal/app/datastruct"
-	"CarService/internal/queue"
-	"CarService/internal/repo"
 	"context"
+	"github.com/RuLemur/CarService/internal/app/datastruct"
+	"github.com/RuLemur/CarService/internal/queue"
+	"github.com/RuLemur/CarService/internal/repo"
 )
 
 type Service struct {

@@ -1,10 +1,10 @@
 package router
 
 import (
-	"CarService/internal/app/car_service"
-	"CarService/internal/app/datastruct"
 	"context"
 	"fmt"
+	"github.com/RuLemur/CarService/internal/app/car_service"
+	"github.com/RuLemur/CarService/internal/app/datastruct"
 	"github.com/RuLemur/CarService/pkg/endpoint"
 )
 
