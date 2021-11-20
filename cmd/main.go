@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/RuLemur/CarService/internal/pkg"
+	"car_service/internal/pkg"
 	_ "github.com/jackc/pgx/stdlib"
 )
 
