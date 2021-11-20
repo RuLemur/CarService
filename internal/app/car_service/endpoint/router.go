@@ -1,10 +1,10 @@
 package endpoint
 
 import (
+	"car_service/internal/app/car_service"
+	"car_service/internal/app/datastruct"
 	"context"
 	"fmt"
-	"github.com/RuLemur/CarService/internal/app/car_service"
-	"github.com/RuLemur/CarService/internal/app/datastruct"
 )
 
 type GRPCRouter struct {
