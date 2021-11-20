@@ -30,21 +30,6 @@ func (s *Service) GetUser(ctx context.Context, userId int64) (*datastruct.User, 
 	return user, nil
 }
 
-func (s *Service) CreateGarage(ctx context.Context) (datastruct.Garage, error) {
-	var garage datastruct.Garage
-	err := repo.CreateGarage(s.db, &garage)
-	return garage, err
-}
-
-func (s *Service) GetGarage(ctx context.Context, garageID int64) ([]*datastruct.Garage, error) {
-	garage, err := repo.GetGarage(s.db, garageID)
-	if err != nil {
-		return nil, err
-	}
-
-	return garage, nil
-}
-
 func (s *Service) SearchCarModel(ctx context.Context, carModel *datastruct.CarModel) ([]*datastruct.CarModel, error) {
 	filter := map[string]string{
 		"brand": carModel.Brand,
@@ -57,6 +42,18 @@ func (s *Service) SearchCarModel(ctx context.Context, carModel *datastruct.CarMo
 	return model, nil
 }
 
-func (s *Service) AddToGarage(ctx context.Context, userCar *datastruct.UserCar) {
-	repo.AddToGarage(s.db, userCar)
+func (s *Service) AddCar(ctx context.Context, userId int64, car *datastruct.UserCar) (int64, error) {
+	err := repo.AddCar(s.db, userId, car)
+	if err != nil {
+		return 0, err
+	}
+	return car.ID, nil
+}
+
+func (s *Service) GetUserCars(ctx context.Context, userId int64) ([]*datastruct.UserCar, error) {
+	cars, err := repo.GetUserCars(s.db, userId)
+	if err != nil {
+		return nil, err
+	}
+	return cars, nil
 }

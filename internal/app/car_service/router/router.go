@@ -2,7 +2,6 @@ package router
 
 import (
 	"context"
-	"fmt"
 	"github.com/RuLemur/CarService/internal/app/car_service"
 	"github.com/RuLemur/CarService/internal/app/datastruct"
 	"github.com/RuLemur/CarService/pkg/endpoint"
@@ -14,6 +13,47 @@ type GRPCRouter struct {
 
 func NewGRPCRouter(s *car_service.Service) *GRPCRouter {
 	return &GRPCRouter{s}
+}
+
+func (g *GRPCRouter) AddCar(ctx context.Context, request *endpoint.AddCarRequest) (*endpoint.AddCarResponse, error) {
+	userCar := &datastruct.UserCar{
+		ModelID: request.ModelId,
+		Year:    request.ProductionYear,
+		Mileage: request.Mileage,
+		CarName: request.CarName,
+	}
+	carID, err := g.s.AddCar(ctx, request.UserId, userCar)
+	if err != nil {
+		return nil, err
+	}
+	return &endpoint.AddCarResponse{
+		UserCarId: carID,
+	}, nil
+}
+
+func (g *GRPCRouter) GetUserCars(ctx context.Context, request *endpoint.GetUserCarsRequest) (*endpoint.GetUserCarsResponse, error) {
+	userCars, err := g.s.GetUserCars(ctx, request.UserId)
+	if err != nil {
+		return nil, err
+	}
+	if len(userCars) == 0 {
+		return &endpoint.GetUserCarsResponse{UserId: request.UserId}, nil
+	}
+	var cars []*endpoint.UserCar
+	for _, userCar := range userCars {
+		cars = append(cars, &endpoint.UserCar{
+			Id:             userCar.ID,
+			ModelId:        userCar.ModelID,
+			CarName:        userCar.CarName,
+			ProductionYear: userCar.Year,
+			Mileage:        userCar.Mileage,
+			AddedAt:        userCar.AddedAt,
+		})
+	}
+	return &endpoint.GetUserCarsResponse{
+		UserId:   request.UserId,
+		UserCars: cars,
+	}, nil
 }
 
 func (g *GRPCRouter) AddUser(ctx context.Context, request *endpoint.AddUserRequest) (*endpoint.AddUserResponse, error) {
@@ -39,35 +79,6 @@ func (g *GRPCRouter) GetUser(ctx context.Context, request *endpoint.GetUserReque
 	}, nil
 }
 
-func (g *GRPCRouter) CreateGarage(ctx context.Context, _ *endpoint.EmptyRequest) (*endpoint.CreateGarageResponse, error) {
-	garageId, err := g.s.CreateGarage(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &endpoint.CreateGarageResponse{
-		Id: garageId.GarageID,
-	}, nil
-}
-
-func (g *GRPCRouter) GetGarage(ctx context.Context, request *endpoint.GetGarageRequest) (*endpoint.GetGarageResponse, error) {
-	garages, err := g.s.GetGarage(ctx, request.Id)
-	if err != nil {
-		return nil, err
-	}
-	if len(garages) == 0 {
-		return nil, fmt.Errorf("not found garage")
-	}
-
-	var cars []int64
-	for _, garage := range garages {
-		cars = append(cars, garage.CarID.Int64)
-	}
-	return &endpoint.GetGarageResponse{
-		GarageId: garages[0].GarageID,
-		Cars:     cars,
-	}, nil
-}
-
 func (g *GRPCRouter) CarSearch(ctx context.Context, request *endpoint.CarSearchRequest) (*endpoint.CarSearchResponse, error) {
 	carModel := datastruct.CarModel{
 		Brand: request.Brand,
@@ -87,16 +98,8 @@ func (g *GRPCRouter) CarSearch(ctx context.Context, request *endpoint.CarSearchR
 			EngineType: model.EngineType,
 		})
 	}
-	tests := &endpoint.CarSearchResponse{
+	response := &endpoint.CarSearchResponse{
 		Car: cars,
 	}
-	return tests, nil
-}
-
-func (g *GRPCRouter) AddToGarage(ctx context.Context, request *endpoint.AddToGarageRequest) (*endpoint.AddToGarageResponse, error) {
-	car := datastruct.UserCar{
-		GarageId: request.GarageId,
-	}
-	g.s.AddToGarage(ctx, &car)
-	return &endpoint.AddToGarageResponse{CarId: 0}, nil
+	return response, nil
 }

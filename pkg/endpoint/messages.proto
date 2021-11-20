@@ -8,10 +8,9 @@ import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 service CarService {
   rpc AddUser(AddUserRequest) returns (AddUserResponse);
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
-  rpc CreateGarage(EmptyRequest) returns (CreateGarageResponse);
-  rpc GetGarage(GetGarageRequest) returns (GetGarageResponse);
   rpc CarSearch(CarSearchRequest) returns (CarSearchResponse);
-  rpc AddToGarage(AddToGarageRequest) returns (AddToGarageResponse);
+  rpc AddCar(AddCarRequest) returns (AddCarResponse);
+  rpc GetUserCars(GetUserCarsRequest) returns (GetUserCarsResponse);
 
 }
 
@@ -34,23 +33,6 @@ message GetUserResponse {
   google.protobuf.Timestamp updated_at = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
-message CreateGarageRequest {
-  int64 id = 1;
-}
-
-message CreateGarageResponse {
-  int64 id = 1;
-}
-
-message GetGarageRequest {
-  int64 id = 1;
-}
-
-message GetGarageResponse {
-  int64 garage_id = 1;
-  repeated int64 cars = 2;
-}
-
 message Car {
   string id = 1;
   string brand = 2;
@@ -68,14 +50,32 @@ message CarSearchResponse {
   repeated Car car = 1;
 }
 
-message AddToGarageRequest {
-  int64 garage_id = 1;
+message AddCarRequest {
+  int64 user_id = 1;
+  string car_name = 2;
+  int64 model_id = 3;
+  int64 production_year = 4;
+  int64 mileage = 5;
+}
+
+message AddCarResponse {
+  int64 user_car_id = 1;
+}
+
+message UserCar {
+  int64 id = 1;
   int64 model_id = 2;
+  int64 production_year = 3;
+  int64 mileage = 4;
+  string car_name = 5;
+  google.protobuf.Timestamp added_at = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
-message AddToGarageResponse {
-  int64 car_id = 1;
+message GetUserCarsRequest {
+  int64 user_id = 1;
 }
 
-message EmptyRequest {
+message GetUserCarsResponse {
+  int64 user_id = 1;
+  repeated UserCar user_cars = 2;
 }
