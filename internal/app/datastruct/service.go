@@ -18,8 +18,13 @@ type User struct {
 }
 
 type UserCar struct {
-	GarageId int64 `db:"id"`
-	CarId    int64 `db:"car_id"`
+	ID      int64     `db:"id"`
+	UserID  int64     `db:"user_id"`
+	ModelID int64     `db:"model_id"`
+	Year    int64     `db:"production_year"`
+	Mileage int64     `db:"mileage"`
+	CarName string    `db:"car_name"`
+	AddedAt time.Time `db:"added_at"`
 }
 
 type CarModel struct {

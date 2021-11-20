@@ -21,18 +21,6 @@ func GetUser(db *QueryLogger, userId int64) (*datastruct.User, error) {
 	return &user, err
 }
 
-func CreateGarage(db *QueryLogger, garage *datastruct.Garage) error {
-	err := db.QueryRowx(`INSERT INTO garage DEFAULT VALUES RETURNING id`).Scan(&garage.GarageID)
-	return err
-}
-
-func GetGarage(db *QueryLogger, garageId int64) ([]*datastruct.Garage, error) {
-	var garages []*datastruct.Garage
-	err := sqlx.Select(db, &garages, `SELECT * FROM garage where id = $1`, garageId)
-
-	return garages, err
-}
-
 func SearchCarModel(db *QueryLogger, filter map[string]string, limit int64) ([]*datastruct.CarModel, error) {
 	var models []*datastruct.CarModel
 
@@ -72,6 +60,20 @@ func SearchCarModel(db *QueryLogger, filter map[string]string, limit int64) ([]*
 	return []*datastruct.CarModel{}, nil
 }
 
-func AddToGarage(db *QueryLogger, userCar *datastruct.UserCar) {
-	db.QueryRowx(`INSERT INTO garage (id, car_id) VALUES ($1,$2) RETURNING id`, userCar.GarageId, userCar.CarId)
+
+func AddCar(db *QueryLogger, userId int64, car *datastruct.UserCar) error {
+	err := db.QueryRowx(`INSERT INTO user_car (user_id, model_id, production_year, mileage, car_name) VALUES ($1,$2,$3,$4,$5) RETURNING id`,
+		userId,
+		car.ModelID,
+		car.Year,
+		car.Mileage,
+		car.CarName).Scan(&car.ID)
+	return err
+}
+
+
+func GetUserCars(db *QueryLogger, userId int64) ([]*datastruct.UserCar, error) {
+	var cars []*datastruct.UserCar
+	err := sqlx.Select(db, &cars, `SELECT * FROM user_car where user_id = $1`, userId)
+	return cars, err
 }
