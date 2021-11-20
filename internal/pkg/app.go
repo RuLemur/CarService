@@ -2,11 +2,11 @@ package pkg
 
 import (
 	"context"
+	"github.com/RuLemur/CarService/internal/app/car_service"
+	"github.com/RuLemur/CarService/internal/app/car_service/endpoint"
+	"github.com/RuLemur/CarService/internal/queue"
+	"github.com/RuLemur/CarService/internal/repo"
 	"github.com/jmoiron/sqlx"
-	"github.com/rulemur/CarService/internal/app/car_service"
-	"github.com/rulemur/CarService/internal/app/car_service/endpoint"
-	"github.com/rulemur/CarService/internal/queue"
-	"github.com/rulemur/CarService/internal/repo"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"net"

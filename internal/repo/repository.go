@@ -2,8 +2,8 @@ package repo
 
 import (
 	"fmt"
+	"github.com/RuLemur/CarService/internal/app/datastruct"
 	"github.com/jmoiron/sqlx"
-	"github.com/rulemur/CarService/internal/app/datastruct"
 	"log"
 )
 

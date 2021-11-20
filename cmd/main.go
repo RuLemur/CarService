@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/RuLemur/CarService/internal/pkg"
 	_ "github.com/jackc/pgx/stdlib"
-	"github.com/rulemur/CarService/internal/pkg"
 )
 
 func main() {
