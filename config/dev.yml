@@ -1,6 +1,6 @@
 server:
-  host: ":5300"
+  host: "app:5300"
 database:
-  db: "postgresql://root:mydb@172.21.0.2:5432/car_service?sslmode=disable"
+  db: "postgresql://root:mydb@db:5432/car_service?sslmode=disable"
 queue:
-  host: "amqp://admin:1234@172.21.0.4:5672/"
+  host: "amqp://admin:1234@message.brocker:5672/"
