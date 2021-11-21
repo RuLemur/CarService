@@ -4,7 +4,6 @@ go 1.17
 
 require (
 	github.com/cockroachdb/apd v1.1.0 // indirect
-	github.com/go-kit/kit v0.12.0
 	github.com/gofrs/uuid v4.0.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.2

@@ -1,2 +1,6 @@
-service:
-  db: "postgres://127.0.0.1/go_restful?sslmode=disable&user=postgres&password=postgres"
+server:
+  host: ":5300"
+database:
+  db: "postgresql://root:mydb@172.21.0.2:5432/car_service?sslmode=disable"
+queue:
+  host: "amqp://admin:1234@172.21.0.4:5672/"

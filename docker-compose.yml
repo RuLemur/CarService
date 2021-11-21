@@ -1,6 +1,14 @@
 version: '3.7'
 
 services:
+#  app:
+#    build:
+#      dockerfile: Dockerfile
+#      context: .
+#    ports:
+#      - "5300"
+#    depends_on:
+#      - db
 
   db:
     image: "postgres:alpine"
@@ -12,7 +20,7 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d car_service"]
+      test: [ "CMD-SHELL", "pg_isready -U root -d car_service" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -32,3 +40,16 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: 1234
     restart: always
+
+#  web:
+#    build:
+#      dockerfile: ../AuthCarService/Dockerfile
+#      context: ../AuthCarService/
+##    networks:
+##      - default
+#    ports:
+#      - "8081:8081"
+#
+#networks:
+#  default:
+#    attachable: true

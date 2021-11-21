@@ -27,6 +27,16 @@ func (app *App) RunApp(config *Config) {
 	app.log = logrus.New()
 	app.initLogger(app.log)
 
+	//connect to Rabbit MQ
+	app.log.Println("Connecting to RabbitMQ Server...")
+	rabbit := queue.NewClient(config.Queue.Host)
+	err := rabbit.ConnectToServer()
+	if err != nil {
+		app.log.Fatalln(err)
+	}
+	app.log.Println("Connected.")
+	defer rabbit.CloseConnect()
+
 	// connect to the database
 	app.log.Println("Connecting to database...")
 	dbConnection, err := sqlx.Connect("pgx", config.Database.DBHost)
@@ -37,18 +47,8 @@ func (app *App) RunApp(config *Config) {
 	app.log.Println("Connected.")
 	defer dbConnection.Close()
 
-	//connect to Rabbit MQ
-	app.log.Println("Connecting to RabbitMQ Server...")
-	rabbit := queue.NewClient(config.Queue.Host)
-	err = rabbit.ConnectToServer()
-	if err != nil {
-		app.log.Fatalln(err)
-	}
-	app.log.Println("Connected.")
-	defer rabbit.CloseConnect()
-
 	// grpc Server
-	app.log.Println("Starting GRPC Server...")
+	app.log.Printf("Starting GRPC Server on %s...", config.Server.Host)
 	listener, err := net.Listen("tcp", config.Server.Host)
 	if err != nil {
 		app.log.Fatalf("failed to listen: %v", err)
