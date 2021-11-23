@@ -94,8 +94,12 @@ func (g *GRPCRouter) CarSearch(ctx context.Context, request *endpoint.CarSearchR
 			Id:         model.ID,
 			Brand:      model.Brand,
 			Model:      model.Model,
-			Equipment:  model.Equipment,
-			EngineType: model.EngineType,
+			Equipment:  model.Equipment.String,
+			EngineType: model.EngineType.String,
+			YearFrom:   model.YearFrom,
+			YearTo:     model.YearTo.Int64,
+			ImgLink:    model.ImgLink.String,
+			ModelLink:  model.ModelLink.String,
 		})
 	}
 	response := &endpoint.CarSearchResponse{

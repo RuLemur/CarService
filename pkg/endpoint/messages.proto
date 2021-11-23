@@ -39,6 +39,10 @@ message Car {
   string model = 3;
   string equipment = 4;
   string engine_type = 5;
+  int64 year_from = 6;
+  int64 year_to = 7;
+  string img_link = 8;
+  string model_link = 9;
 }
 
 message CarSearchRequest {

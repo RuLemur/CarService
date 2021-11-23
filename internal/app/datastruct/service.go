@@ -28,9 +28,13 @@ type UserCar struct {
 }
 
 type CarModel struct {
-	ID         string `db:"id"`
-	Brand      string `db:"brand"`
-	Model      string `db:"model"`
-	Equipment  string `db:"equipment"`
-	EngineType string `db:"engine_type"`
+	ID         string         `db:"id"`
+	Brand      string         `db:"brand"`
+	Model      string         `db:"model"`
+	Equipment  sql.NullString `db:"equipment"`
+	EngineType sql.NullString `db:"engine_type"`
+	YearFrom   int64          `db:"year_from"`
+	YearTo     sql.NullInt64  `db:"year_to"`
+	ImgLink    sql.NullString `db:"img_link"`
+	ModelLink  sql.NullString `db:"model_link"`
 }
