@@ -8,22 +8,22 @@ import (
 )
 
 type Service struct {
-	db          *repo.QueryLogger
-	queueClient *queue.Client
+	db          repo.Repository
+	queueClient queue.Client
 }
 
-func NewService(db *repo.QueryLogger, queueClient *queue.Client) *Service {
+func NewService(db repo.Repository, queueClient queue.Client) *Service {
 	return &Service{db, queueClient}
 }
 
 func (s *Service) AddUser(ctx context.Context, user datastruct.User) (int64, error) {
 	//err := s.queueClient.SendMessageToQueue("Hi!")
-	err := repo.AddUser(s.db, &user)
+	err := s.db.AddUser(&user)
 	return user.ID, err
 }
 
 func (s *Service) GetUser(ctx context.Context, userId int64) (*datastruct.User, error) {
-	user, err := repo.GetUser(s.db, userId)
+	user, err := s.db.GetUser(userId)
 	if err != nil {
 		return nil, err
 	}
@@ -35,7 +35,7 @@ func (s *Service) SearchCarModel(ctx context.Context, carModel *datastruct.CarMo
 		"brand": carModel.Brand,
 		"model": carModel.Model,
 	}
-	model, err := repo.SearchCarModel(s.db, filter, 10)
+	model, err := s.db.SearchCarModel(filter, 10)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ func (s *Service) SearchCarModel(ctx context.Context, carModel *datastruct.CarMo
 }
 
 func (s *Service) AddCar(ctx context.Context, userId int64, car *datastruct.UserCar) (int64, error) {
-	err := repo.AddCar(s.db, userId, car)
+	err := s.db.AddCar(userId, car)
 	if err != nil {
 		return 0, err
 	}
@@ -51,7 +51,7 @@ func (s *Service) AddCar(ctx context.Context, userId int64, car *datastruct.User
 }
 
 func (s *Service) GetUserCars(ctx context.Context, userId int64) ([]*datastruct.UserCar, error) {
-	cars, err := repo.GetUserCars(s.db, userId)
+	cars, err := s.db.GetUserCars(userId)
 	if err != nil {
 		return nil, err
 	}

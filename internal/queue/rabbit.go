@@ -1,35 +1,55 @@
 package queue
 
 import (
+	"context"
 	"fmt"
+	"github.com/RuLemur/CarService/internal/config"
+	"github.com/RuLemur/CarService/internal/logger"
 	"github.com/streadway/amqp"
 )
 
+var log = logger.NewDefaultLogger()
+
 type Client struct {
-	Host    string
 	channel *amqp.Channel
+	conn    *amqp.Connection
 }
 
-func NewClient(host string) *Client {
-	return &Client{Host: host}
-}
+func (c *Client) Init(ctx context.Context) error {
+	cfg := config.GetInstance().GetConfig()
 
-func (c *Client) ConnectToServer() error {
-	conn, err := amqp.Dial(c.Host)
+	log.Infof("Connecting to RabbitMQ: %s", cfg.Queue.Host)
+	var err error
+	c.conn, err = amqp.Dial(cfg.Queue.Host)
 	if err != nil {
-		fmt.Println("Failed Initializing Broker Connection")
+		log.Errorf("Fail connect to RabbitMq: %s", err.Error())
 		return err
 	}
 
-	c.channel, err = conn.Channel()
+	c.channel, err = c.conn.Channel()
 	if err != nil {
-		fmt.Println(err)
+		log.Errorf("Fail to create RabbitMq channel: %s", err.Error())
+		return err
 	}
+	log.Infof("Connected to RabbitMQ")
 	return nil
 }
 
-func (c *Client) CloseConnect() error  {
-	return  c.channel.Close()
+func (c *Client) Ping(ctx context.Context) error {
+	if c.conn.IsClosed() {
+		return fmt.Errorf("rabbitMQ ebnulsa")
+	}
+	log.Debugf("Ping RabbitMQ")
+	return nil
+}
+
+func (c *Client) Close() error {
+	return c.CloseConnect()
+}
+
+func (c *Client) CloseConnect() error {
+	log.Infof("Close RabbitMq connection")
+	return c.channel.Close()
 }
 
 func (c *Client) SendMessageToQueue(message string) error {
