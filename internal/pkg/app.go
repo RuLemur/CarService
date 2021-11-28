@@ -4,91 +4,75 @@ import (
 	"context"
 	"github.com/RuLemur/CarService/internal/app/car_service"
 	"github.com/RuLemur/CarService/internal/app/car_service/router"
+	"github.com/RuLemur/CarService/internal/config"
+	"github.com/RuLemur/CarService/internal/logger"
 	"github.com/RuLemur/CarService/internal/queue"
 	"github.com/RuLemur/CarService/internal/repo"
 	"github.com/RuLemur/CarService/pkg/endpoint"
-	"github.com/jmoiron/sqlx"
-	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"net"
-	"os"
 	"time"
 )
 
+var log = logger.NewDefaultLogger()
+
 type App struct {
-	log *logrus.Logger
+	Rabbit queue.Client
+	DB     repo.Repository
 }
 
-func NewApp() *App {
-	return &App{}
-}
+func (app *App) RunApp(ctx context.Context, halt <-chan struct{}) error {
+	cfg := config.GetInstance().GetConfig()
 
-func (app *App) RunApp(config *Config) {
-	app.log = logrus.New()
-	app.initLogger(app.log)
-
-	//connect to Rabbit MQ
-	app.log.Println("Connecting to RabbitMQ Server...")
-	rabbit := queue.NewClient(config.Queue.Host)
-	err := rabbit.ConnectToServer()
+	log.Infof("Connect to tcp with: %s", cfg.Server.Host)
+	listener, err := net.Listen("tcp", cfg.Server.Host)
 	if err != nil {
-		app.log.Fatalln(err)
+		return err
 	}
-	app.log.Println("Connected.")
-	defer rabbit.CloseConnect()
 
-	// connect to the database
-	app.log.Println("Connecting to database...")
-	dbConnection, err := sqlx.Connect("pgx", config.Database.DBHost)
-	if err != nil {
-		app.log.Fatalln(err)
-	}
-	db := &repo.QueryLogger{Queryer: dbConnection, Logger: app.log}
-	app.log.Println("Connected.")
-	defer dbConnection.Close()
-
-	// grpc Server
-	app.log.Printf("Starting GRPC Server on %s...", config.Server.Host)
-	listener, err := net.Listen("tcp", config.Server.Host)
-	if err != nil {
-		app.log.Fatalf("failed to listen: %v", err)
-	}
 	grpcServer := grpc.NewServer(
-		app.withServerUnaryInterceptor(),
+		app.WithServerUnaryInterceptor(),
 	)
 
-	service := car_service.NewService(db, rabbit)
-	srv := router.NewGRPCRouter(service)
-	endpoint.RegisterCarServiceServer(grpcServer, srv)
+	srv := car_service.NewService(
+		app.DB,
+		app.Rabbit)
+	rtr := router.NewGRPCRouter(srv)
+	endpoint.RegisterCarServiceServer(grpcServer, rtr)
 
-	app.log.Println("Started. Listen requests")
-	err = grpcServer.Serve(listener)
-	if err != nil {
-		panic("failed to Serve server")
+	var errShutdown = make(chan error, 1)
+	go func() {
+		defer close(errShutdown)
+		select {
+		case <-halt:
+		case <-ctx.Done():
+		}
+		grpcServer.Stop()
+	}()
+	if err := grpcServer.Serve(listener); err != nil {
+		return err
 	}
+	err, ok := <-errShutdown
+	if ok {
+		return err
+	}
+	return nil
 }
 
-func (app *App) initLogger(log *logrus.Logger) {
-	log.SetFormatter(&logrus.TextFormatter{})
-	log.SetOutput(os.Stdout)
-	log.SetLevel(logrus.InfoLevel)
+func (app *App) WithServerUnaryInterceptor() grpc.ServerOption {
+	return grpc.UnaryInterceptor(app.ServerInterceptor)
 }
 
-func (app *App) withServerUnaryInterceptor() grpc.ServerOption {
-	return grpc.UnaryInterceptor(app.serverInterceptor)
-}
-
-func (app *App) serverInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+func (app *App) ServerInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 	start := time.Now()
-	app.log.Infof("Request - Method: %s\tDuration:%s\t",
+	log.Infof("Request - Method: %s\tDuration:%s\t",
 		info.FullMethod,
 		time.Since(start))
-	app.log.Infof("Request: %s\t", req)
+	log.Infof("Request: %s\t", req)
 
-	// Calls the handler
 	h, err := handler(ctx, req)
 
-	app.log.Infof("Response: %s\tError:%v\n", h, err)
+	log.Infof("Response: %s\tError:%v\n", h, err)
 
 	return h, err
 }

@@ -11,10 +11,9 @@ type GRPCRouter struct {
 	s *car_service.Service
 }
 
-func NewGRPCRouter(s *car_service.Service) *GRPCRouter {
-	return &GRPCRouter{s}
+func NewGRPCRouter(srv *car_service.Service) *GRPCRouter {
+	return &GRPCRouter{s: srv}
 }
-
 func (g *GRPCRouter) AddCar(ctx context.Context, request *endpoint.AddCarRequest) (*endpoint.AddCarResponse, error) {
 	userCar := &datastruct.UserCar{
 		ModelID: request.ModelId,

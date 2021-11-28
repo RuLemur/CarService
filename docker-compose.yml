@@ -1,15 +1,15 @@
 version: '3.7'
 
 services:
-  app:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    ports:
-      - "5300:5300"
-    depends_on:
-      - db
-    hostname: app
+#  app:
+#    build:
+#      dockerfile: Dockerfile
+#      context: .
+#    ports:
+#      - "5300:5300"
+#    depends_on:
+#      - db
+#    hostname: app
 
   db:
     image: "postgres:alpine"
@@ -43,10 +43,10 @@ services:
       RABBITMQ_DEFAULT_PASS: 1234
     restart: always
     hostname: message.brocker
-
-  web:
-    build:
-      dockerfile: ../AuthCarService/Dockerfile
-      context: ../AuthCarService/
-    ports:
-      - "8081:8081"
+#
+#  web:
+#    build:
+#      dockerfile: ../AuthCarService/Dockerfile
+#      context: ../AuthCarService/
+#    ports:
+#      - "8081:8081"

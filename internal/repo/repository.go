@@ -1,27 +1,58 @@
 package repo
 
 import (
+	"context"
 	"fmt"
 	"github.com/RuLemur/CarService/internal/app/datastruct"
+	"github.com/RuLemur/CarService/internal/config"
+	"github.com/RuLemur/CarService/internal/logger"
 	"github.com/jmoiron/sqlx"
-	"log"
 )
 
-type Repository interface {
+var log = logger.NewDefaultLogger()
+
+type Repository struct {
+	db *sqlx.DB
 }
 
-func AddUser(db *QueryLogger, user *datastruct.User) error {
-	err := db.QueryRowx(`INSERT INTO users (username) VALUES ($1) RETURNING id`, user.Username).Scan(&user.ID)
+func (r *Repository) Init(ctx context.Context) error {
+	cfg := config.GetInstance().GetConfig()
+	log = logger.NewDefaultLogger()
+
+	log.Infof("Connecting to database: %s", cfg.Database.DBHost)
+	var err error
+	r.db, err = sqlx.Connect("pgx", cfg.Database.DBHost)
+	if err != nil {
+		return err
+	}
+
+	log.Infof("Connected to database")
+	return nil
+}
+
+func (r *Repository) Ping(ctx context.Context) error {
+	log.Debugf("Ping database.")
+	_, err := r.db.Query(`SELECT 1`)
 	return err
 }
 
-func GetUser(db *QueryLogger, userId int64) (*datastruct.User, error) {
+func (r *Repository) Close() error {
+	log.Infof("Close DB Connection.")
+	return r.db.Close()
+}
+
+func (r *Repository) AddUser(user *datastruct.User) error {
+	err := r.db.QueryRowx(`INSERT INTO users (username) VALUES ($1) RETURNING id`, user.Username).Scan(&user.ID)
+	return err
+}
+
+func (r *Repository) GetUser(userId int64) (*datastruct.User, error) {
 	var user datastruct.User
-	err := sqlx.Get(db, &user, `SELECT * FROM users where id = $1`, userId)
+	err := r.db.Get(&user, `SELECT * FROM users where id = $1`, userId)
 	return &user, err
 }
 
-func SearchCarModel(db *QueryLogger, filter map[string]string, limit int64) ([]*datastruct.CarModel, error) {
+func (r *Repository) SearchCarModel(filter map[string]string, limit int64) ([]*datastruct.CarModel, error) {
 	var models []*datastruct.CarModel
 
 	var filterString string
@@ -36,7 +67,7 @@ func SearchCarModel(db *QueryLogger, filter map[string]string, limit int64) ([]*
 	}
 	fmt.Println(limit)
 	if filterString != "" {
-		rows, err := db.Queryx(fmt.Sprintf("SELECT * FROM car_models WHERE %s", filterString))
+		rows, err := r.db.Queryx(fmt.Sprintf("SELECT * FROM car_models WHERE %s", filterString))
 		for rows.Next() {
 			var model datastruct.CarModel
 			err := rows.StructScan(&model)
@@ -51,7 +82,7 @@ func SearchCarModel(db *QueryLogger, filter map[string]string, limit int64) ([]*
 
 		return models, nil
 	} else {
-		err := sqlx.Select(db, &models, `SELECT * FROM car_models limit 10`)
+		err := r.db.Select(&models, `SELECT * FROM car_models limit 10`)
 		if err != nil {
 			return nil, err
 		}
@@ -60,9 +91,8 @@ func SearchCarModel(db *QueryLogger, filter map[string]string, limit int64) ([]*
 	return []*datastruct.CarModel{}, nil
 }
 
-
-func AddCar(db *QueryLogger, userId int64, car *datastruct.UserCar) error {
-	err := db.QueryRowx(`INSERT INTO user_car (user_id, model_id, production_year, mileage, car_name) VALUES ($1,$2,$3,$4,$5) RETURNING id`,
+func (r *Repository) AddCar(userId int64, car *datastruct.UserCar) error {
+	err := r.db.QueryRowx(`INSERT INTO user_car (user_id, model_id, production_year, mileage, car_name) VALUES ($1,$2,$3,$4,$5) RETURNING id`,
 		userId,
 		car.ModelID,
 		car.Year,
@@ -71,9 +101,8 @@ func AddCar(db *QueryLogger, userId int64, car *datastruct.UserCar) error {
 	return err
 }
 
-
-func GetUserCars(db *QueryLogger, userId int64) ([]*datastruct.UserCar, error) {
+func (r *Repository) GetUserCars(userId int64) ([]*datastruct.UserCar, error) {
 	var cars []*datastruct.UserCar
-	err := sqlx.Select(db, &cars, `SELECT * FROM user_car where user_id = $1`, userId)
+	err := r.db.Select(&cars, `SELECT * FROM user_car where user_id = $1`, userId)
 	return cars, err
 }
