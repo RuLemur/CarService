@@ -8,24 +8,33 @@ import (
 	"time"
 )
 
-var log = logger.NewDefaultLogger()
+var (
+	log = logger.NewDefaultLogger()
+)
+
+const (
+	shutdownTimeout    = time.Second * 10
+	pingPeriod         = time.Minute
+	terminationTimeout = time.Second * 10
+)
 
 func main() {
 
 	var app pkg.App
 
+	log.Infof("Starting service...")
 	var svc = pkg.ServiceKeeper{
 		Services: []pkg.Service{
 			&app.DB,
 			&app.Rabbit,
 		},
-		ShutdownTimeout: time.Second * 10,
-		PingPeriod:      time.Second * 30,
+		ShutdownTimeout: shutdownTimeout,
+		PingPeriod:      pingPeriod,
 	}
 	var application = pkg.Application{
 		MainFunc:           app.RunApp,
 		Resources:          &svc,
-		TerminationTimeout: time.Second * 10,
+		TerminationTimeout: terminationTimeout,
 	}
 	if err := application.Run(); err != nil {
 		log.Errorf("error: %s", err.Error())

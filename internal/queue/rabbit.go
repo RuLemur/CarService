@@ -15,7 +15,7 @@ type Client struct {
 	conn    *amqp.Connection
 }
 
-func (c *Client) Init(ctx context.Context) error {
+func (c *Client) Init(_ context.Context) error {
 	cfg := config.GetInstance().GetConfig()
 
 	log.Infof("Connecting to RabbitMQ: %s", cfg.Queue.Host)
@@ -31,11 +31,11 @@ func (c *Client) Init(ctx context.Context) error {
 		log.Errorf("Fail to create RabbitMq channel: %s", err.Error())
 		return err
 	}
-	log.Infof("Connected to RabbitMQ")
+	log.Infof("Succesful connected to RabbitMQ")
 	return nil
 }
 
-func (c *Client) Ping(ctx context.Context) error {
+func (c *Client) Ping(_ context.Context) error {
 	if c.conn.IsClosed() {
 		return fmt.Errorf("rabbitMQ ebnulsa")
 	}
