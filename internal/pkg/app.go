@@ -48,6 +48,7 @@ func (app *App) RunApp(ctx context.Context, halt <-chan struct{}) error {
 		case <-ctx.Done():
 		}
 		grpcServer.Stop()
+		log.Infof("Down GRPC server")
 	}()
 	if err := grpcServer.Serve(listener); err != nil {
 		return err
